@@ -10,7 +10,7 @@ public class UIGameOverController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // reload
+            // reload scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
