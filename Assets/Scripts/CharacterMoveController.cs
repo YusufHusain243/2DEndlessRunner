@@ -29,6 +29,8 @@ public class CharacterMoveController : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
     private CharacterSoundController sound;
+    
+    public GameObject gameOver;
 
     private bool isJumping;
     private bool isOnGround;
@@ -52,7 +54,7 @@ public class CharacterMoveController : MonoBehaviour
             if (isOnGround)
             {
                 isJumping = true;
-
+                
                 sound.PlayJump();
             }
         }
@@ -107,7 +109,7 @@ public class CharacterMoveController : MonoBehaviour
         rig.velocity = velocityVector;
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         // set high score
         score.FinishScoring();
@@ -125,5 +127,14 @@ public class CharacterMoveController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Debug.DrawLine(transform.position, transform.position + (Vector3.down * groundRaycastDistance), Color.white);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Meteor")
+        {
+            GameOver();
+            gameObject.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+       }
     }
 }

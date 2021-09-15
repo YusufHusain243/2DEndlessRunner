@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIGameOverController : MonoBehaviour
 {
     // Update is called once per frame
-    private void Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
